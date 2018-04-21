@@ -44,3 +44,8 @@ Number of members in the hazelcast cluster.
 hazelcast_map_items
 ```
 Number of items in a specific map.
+
+### Known bugs
+
+This program is crashing because of
+[https://github.com/hazelcast/hazelcast-go-client/issues/242](https://github.com/hazelcast/hazelcast-go-client/issues/242).
