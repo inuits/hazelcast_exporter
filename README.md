@@ -13,8 +13,8 @@ Then, point your Prometheus server to `:8080/metrics`.
 
 ```
 hazelcastUrl: 127.0.0.1:5780
-hazelcastGroupName: group-1
-hazelcastGroupPassword: password-1
+hazelcastClusterName: group-1
+hazelcastClusterPassword: password-1
 hazelcastMaps:
 - tokens
 ```
