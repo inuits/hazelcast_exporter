@@ -46,7 +46,7 @@
     "serialization",
     "serialization/classdef"
   ]
-  revision = "57b5e47611af979ddc50b1f628bb38c7d44db0d4"
+  revision = "f4abe3be43f52f9aaeb48d3321050a13cf8b013a"
 
 [[projects]]
   name = "github.com/matttproud/golang_protobuf_extensions"
