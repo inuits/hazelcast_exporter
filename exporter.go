@@ -54,12 +54,12 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-	config := hazelcast.NewHazelcastConfig()
-	config.ClientNetworkConfig().AddAddress(e.config.Url)
+	config := hazelcast.NewConfig()
+	config.NetworkConfig().AddAddress(e.config.Url)
 	config.GroupConfig().SetName(e.config.ClusterName)
 	config.GroupConfig().SetPassword(e.config.ClusterPassword)
 
-	client, err := hazelcast.NewHazelcastClientWithConfig(config)
+	client, err := hazelcast.NewClientWithConfig(config)
 	defer client.Shutdown()
 	if err != nil {
 		ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 0)
@@ -68,8 +68,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	}
 	ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 1)
 
-	cluster := client.GetCluster()
-	e.members.Set(float64(len(cluster.GetMemberList())))
+	cluster := client.Cluster()
+	e.members.Set(float64(len(cluster.GetMembers())))
 
 	for _, mapName := range e.config.Maps {
 		m, err := client.GetMap(mapName)
